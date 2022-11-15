@@ -16,5 +16,6 @@ public class LottoController {
         lottoService.printLottoNumbers();
         lottoService.inputLottoWinningNumber();
         lottoService.inputLottoBonusNumber();
+        lottoService.checkWinningCount();
     }
 }

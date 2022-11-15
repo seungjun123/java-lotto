@@ -15,11 +15,13 @@ import java.util.List;
 
 public class LottoService {
     private static int lottoCount;
+    private static List<Integer> winningCount;
     private final Validator validator;
     private final LottoNumberGroup lottoNumberGroup;
     private final WinningNumberGroup winningNumberGroup;
 
     public LottoService() {
+        winningCount = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
         validator = new Validator();
         lottoNumberGroup = new LottoNumberGroup();
         winningNumberGroup = new WinningNumberGroup();
@@ -88,5 +90,48 @@ public class LottoService {
         List<Integer> winningNumbers = winningNumberGroup.getWinningNumbers();
         validator.validateBonusNumber(bonusNumber, winningNumbers);
         return Integer.parseInt(bonusNumber);
+    }
+
+    public void checkWinningCount() {
+        List<Lotto> lottoNumbers = lottoNumberGroup.getLottoNumbers();
+        List<Integer> winningNumbers = winningNumberGroup.getWinningNumbers();
+        int bonusNumber = winningNumberGroup.getBonusNumber();
+        List<Integer> numberCount;
+
+        for (Lotto lottoNumber : lottoNumbers) {
+            numberCount = checkWinningNumberCount(lottoNumber, winningNumbers, bonusNumber);
+            setWinningCount(numberCount.get(0), numberCount.get(1));
+        }
+    }
+
+    private List<Integer> checkWinningNumberCount(Lotto lottoNumbers, List<Integer> winningNumbers, int bonusNumber) {
+        int winningNumberCount = 0;
+        int bonusNumberCount = 0;
+        for (Integer lottoNumber : lottoNumbers.getNumbers()) {
+            if (winningNumbers.contains(lottoNumber)) {
+                winningNumberCount += 1;
+            }
+
+            if (lottoNumber == bonusNumber) {
+                bonusNumberCount = 1;
+            }
+        }
+        return new ArrayList<>(Arrays.asList(winningNumberCount, bonusNumberCount));
+    }
+
+    private void setWinningCount(int winningNumberCount, int bonusNumberCount) {
+        if (winningNumberCount == 3) {
+            winningCount.set(0, winningCount.get(0) + 1);
+        } else if (winningNumberCount == 4) {
+            winningCount.set(1, winningCount.get(1) + 1);
+        } else if (winningNumberCount == 5) {
+            if (bonusNumberCount == 1) {
+                winningCount.set(2, winningCount.get(2) + 1);
+            } else {
+                winningCount.set(3, winningCount.get(3) + 1);
+            }
+        } else if (winningNumberCount == 6) {
+            winningCount.set(4, winningCount.get(4) + 1);
+        }
     }
 }
