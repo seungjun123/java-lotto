@@ -4,10 +4,12 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
 import lotto.domain.LottoNumberGroup;
+import lotto.domain.WinningNumberGroup;
 import lotto.util.Constant;
 import lotto.util.Validator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,10 +17,12 @@ public class LottoService {
     private static int lottoCount;
     private final Validator validator;
     private final LottoNumberGroup lottoNumberGroup;
+    private final WinningNumberGroup winningNumberGroup;
 
     public LottoService() {
         validator = new Validator();
         lottoNumberGroup = new LottoNumberGroup();
+        winningNumberGroup = new WinningNumberGroup();
     }
 
     public void gameStart() {
@@ -53,5 +57,24 @@ public class LottoService {
     public void inputLottoWinningNumber() {
         System.out.println(System.lineSeparator() + Constant.INPUT_WINNING_NUMBER_MESSAGE);
         String lottoWinningNumbers = Console.readLine();
+        Lotto lotto = new Lotto(parseStringToList(lottoWinningNumbers));
+        winningNumberGroup.setWinningNumbers(lotto.getNumbers());
+    }
+
+    private List<Integer> parseStringToList(String lottoWinningNumbers) {
+        List<String> numberList = Arrays.asList(lottoWinningNumbers.split(","));
+        return parseStringListToIntegerList(numberList);
+    }
+
+    private List<Integer> parseStringListToIntegerList(List<String> numberList) {
+        List<Integer> numbers = new ArrayList<>();
+        for (String number : numberList) {
+            try {
+                numbers.add(Integer.parseInt(number));
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자만 입력이 가능합니다.");
+            }
+        }
+        return numbers;
     }
 }
