@@ -1,5 +1,7 @@
 package lotto.util;
 
+import java.util.List;
+
 public class Validator {
     public void validatePurchaseAmounts(String lottoPurchaseAmounts) {
         validateIsDigit(lottoPurchaseAmounts);
@@ -28,4 +30,34 @@ public class Validator {
             throw new IllegalArgumentException("[ERROR] 구입금액은 천 원 단위로만 입력 가능합니다.");
         }
     }
+
+    public void validateBonusNumber(String bonusNumber, List<Integer> lottoWinningNumber) {
+        validateIsDigitBonusNumber(bonusNumber);
+        validateDuplicateBonusNumber(bonusNumber, lottoWinningNumber);
+        validateNumber(bonusNumber);
+    }
+
+    public void validateIsDigitBonusNumber(String bonusNumber) {
+        try {
+            Integer.parseInt(bonusNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 정수만 입력 가능합니다.");
+        }
+    }
+
+    public void validateDuplicateBonusNumber(String bonusNumber, List<Integer> lottoWinningNumber) {
+        int number = Integer.parseInt(bonusNumber);
+        if (lottoWinningNumber.contains(number)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되면 안 됩니다.");
+        }
+    }
+
+    public void validateNumber(String bonusNumber) {
+        int number = Integer.parseInt(bonusNumber);
+        if (number < Constant.MIN_LOTTO_NUMBER || number > Constant.MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+
 }

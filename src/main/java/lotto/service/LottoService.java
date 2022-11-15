@@ -77,4 +77,16 @@ public class LottoService {
         }
         return numbers;
     }
+
+    public void inputLottoBonusNumber() {
+        System.out.println(System.lineSeparator() + Constant.INPUT_BONUS_NUMBER_MESSAGE);
+        String bonusNumber = Console.readLine();
+        winningNumberGroup.setBonusNumber(validateBonusNumber(bonusNumber));
+    }
+
+    private int validateBonusNumber(String bonusNumber) {
+        List<Integer> winningNumbers = winningNumberGroup.getWinningNumbers();
+        validator.validateBonusNumber(bonusNumber, winningNumbers);
+        return Integer.parseInt(bonusNumber);
+    }
 }
