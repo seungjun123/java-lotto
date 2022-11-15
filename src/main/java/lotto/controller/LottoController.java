@@ -13,5 +13,6 @@ public class LottoController {
         lottoService.gameStart();
         lottoService.inputLottoPurchaseAmounts();
         lottoService.generateLottoNumbers();
+        lottoService.printLottoNumbers();
     }
 }

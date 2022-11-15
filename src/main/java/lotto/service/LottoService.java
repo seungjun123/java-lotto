@@ -42,4 +42,11 @@ public class LottoService {
         lottoNumberGroup.setLottoNumbers(lottoNumbers);
     }
 
+    public void printLottoNumbers() {
+        System.out.println(System.lineSeparator() + lottoCount + Constant.LOTTO_COUNT_MESSAGE);
+        List<Lotto> lottoNumbers = lottoNumberGroup.getLottoNumbers();
+        for (Lotto lottoNumber : lottoNumbers) {
+            System.out.println(lottoNumber.getNumbers());
+        }
+    }
 }
