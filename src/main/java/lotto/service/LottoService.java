@@ -144,6 +144,10 @@ public class LottoService {
             System.out.println(a[i].getMessage(winningCount.get(i)));
         }
     }
+    
+    public void printYield() {
+        System.out.println(Constant.PRINT_YIELD.substring(0, 7) + getYield() + Constant.PRINT_YIELD.substring(7));
+    }
 
     public double getYield() {
         double yield = 0;

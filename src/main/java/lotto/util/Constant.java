@@ -7,6 +7,7 @@ public class Constant {
     public static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     public static final String PRINT_WINNING_STATISTICS = "당첨 통계";
     public static final String DASH = "---";
+    public static final String PRINT_YIELD = "총 수익률은 %입니다.";
     public static final int FOUR_DIGIT = 4;
     public static final char ZERO_STRING = '0';
     public static final int ONE_THOUSAND = 1000;
