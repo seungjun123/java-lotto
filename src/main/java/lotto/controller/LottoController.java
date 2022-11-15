@@ -11,5 +11,6 @@ public class LottoController {
 
     public void Start() {
         lottoService.gameStart();
+        lottoService.inputLottoPurchaseAmounts();
     }
 }
