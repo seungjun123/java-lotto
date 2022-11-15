@@ -14,4 +14,8 @@ public enum LottoWinningCriteria {
         this.money = money;
         this.message = message;
     }
+
+    public String getMessage(int count) {
+        return message + count + "개";
+    }
 }

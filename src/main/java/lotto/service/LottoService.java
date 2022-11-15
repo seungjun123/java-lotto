@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
 import lotto.domain.LottoNumberGroup;
+import lotto.domain.LottoWinningCriteria;
 import lotto.domain.WinningNumberGroup;
 import lotto.util.Constant;
 import lotto.util.Validator;
@@ -132,6 +133,15 @@ public class LottoService {
             }
         } else if (winningNumberCount == 6) {
             winningCount.set(4, winningCount.get(4) + 1);
+        }
+    }
+
+    public void printWinningStatistics() {
+        System.out.println(System.lineSeparator() + Constant.PRINT_WINNING_STATISTICS);
+        System.out.println(Constant.DASH);
+        LottoWinningCriteria[] a = LottoWinningCriteria.values();
+        for (int i = 0 ; i < winningCount.size(); i++) {
+            System.out.println(a[i].getMessage(winningCount.get(i)));
         }
     }
 }
