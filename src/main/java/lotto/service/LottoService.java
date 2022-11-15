@@ -144,4 +144,13 @@ public class LottoService {
             System.out.println(a[i].getMessage(winningCount.get(i)));
         }
     }
+
+    public double getYield() {
+        double yield = 0;
+        LottoWinningCriteria[] a = LottoWinningCriteria.values();
+        for (int i = 0; i < winningCount.size(); i++) {
+            yield += a[i].getMoney(winningCount.get(i));
+        }
+        return Math.round(yield / (lottoCount * Constant.TEN) * 10) / 10.;
+    }
 }

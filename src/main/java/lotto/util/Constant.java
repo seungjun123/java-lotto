@@ -14,4 +14,5 @@ public class Constant {
     public static final int MAX_LOTTO_NUMBER = 45;
     public static final int LOTTO_SIZE = 6;
     public static final int LENGTH = 6;
+    public static final double TEN = 10.0;
 }

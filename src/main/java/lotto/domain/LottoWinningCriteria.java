@@ -18,4 +18,8 @@ public enum LottoWinningCriteria {
     public String getMessage(int count) {
         return message + count + "개";
     }
+
+    public int getMoney(int count) {
+        return money * count;
+    }
 }
