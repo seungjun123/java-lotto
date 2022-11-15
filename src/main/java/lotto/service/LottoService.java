@@ -49,4 +49,9 @@ public class LottoService {
             System.out.println(lottoNumber.getNumbers());
         }
     }
+
+    public void inputLottoWinningNumber() {
+        System.out.println(System.lineSeparator() + Constant.INPUT_WINNING_NUMBER_MESSAGE);
+        String lottoWinningNumbers = Console.readLine();
+    }
 }

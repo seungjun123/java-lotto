@@ -14,5 +14,6 @@ public class LottoController {
         lottoService.inputLottoPurchaseAmounts();
         lottoService.generateLottoNumbers();
         lottoService.printLottoNumbers();
+        lottoService.inputLottoWinningNumber();
     }
 }
